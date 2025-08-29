@@ -10,3 +10,6 @@
   font-variation-settings:
     "wdth" 100;
 }
+button:hover{
+  background-color: rgb(179, 176, 176);
+}
