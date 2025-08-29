@@ -19,11 +19,14 @@ let availableCoin = parseInt(document.getElementById("available-coin").innerText
 
 const callButtons = document.getElementsByClassName("call-button")
 
+const serviceTitles = document.getElementsByClassName("service-title")
+
 const serviceNames = document.getElementsByClassName("service-name")
 
 const servicesNumbers = document.getElementsByClassName("service-number")
 
-const callHIstory = document.getElementById("call-history-card") 
+const callHIstory = document.getElementById("call-history-card")
+console.log(callHIstory); 
 
 for(let i = 0; i<callButtons.length; i++){
     callButtons[i].addEventListener('click',function(){
@@ -33,11 +36,44 @@ for(let i = 0; i<callButtons.length; i++){
        
         availableCoin -= 20;
         document.getElementById('available-coin').innerText = availableCoin;
+        const serviceTitle = serviceTitles[i].innerText;
         const serviceName = serviceNames[i].innerText;
         const serviceNumber = servicesNumbers[i].innerText;
         alert('📞 calling ' + serviceName +' '+ serviceNumber);
+
+
+        //call history functionality 
+
+        const date = new Date().toLocaleTimeString()
+        const history = document.createElement('div')
+        history.innerHTML = `
+        <div id="call-history-card" class="flex justify-between items-center mt-3 bg-[#fafafa] rounded-lg p-3">
+            <div>
+                <h2 class="font-semibold"> ${serviceTitle} </h2>
+                <p> ${serviceNumber} </p>
+            </div>
+            <div> ${date} </div>
+        </div>
+    
+    `
+    callHIstory.appendChild(history);
+
     })
 }
+const copyButtons = document.getElementsByClassName("copy-btton");
+
+let totalCopy = parseInt(document.getElementById("copy-count").innerText);
+
+for(let i = 0; i<copyButtons.length; i++){
+    copyButtons[i].addEventListener('click',function(){
+        totalCopy++;
+        document.getElementById("copy-count").innerText = totalCopy;
+        const serviceNumber = servicesNumbers[i].innerText;
+        navigator.clipboard.writeText(serviceNumber);
+         alert("Copied: " + serviceNumber);
+    })
+}
+
     
 
 
