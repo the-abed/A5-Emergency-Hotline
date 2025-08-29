@@ -25,8 +25,8 @@ const serviceNames = document.getElementsByClassName("service-name")
 
 const servicesNumbers = document.getElementsByClassName("service-number")
 
-const callHIstory = document.getElementById("call-history-card")
-console.log(callHIstory); 
+const callHIstory = document.getElementById("call-history-container")
+
 
 for(let i = 0; i<callButtons.length; i++){
     callButtons[i].addEventListener('click',function(){
@@ -47,7 +47,7 @@ for(let i = 0; i<callButtons.length; i++){
         const date = new Date().toLocaleTimeString()
         const history = document.createElement('div')
         history.innerHTML = `
-        <div id="call-history-card" class="flex justify-between items-center mt-3 bg-[#fafafa] rounded-lg p-3">
+        <div class="flex justify-between items-center mt-3 bg-[#fafafa] rounded-lg p-3">
             <div>
                 <h2 class="font-semibold"> ${serviceTitle} </h2>
                 <p> ${serviceNumber} </p>
@@ -60,6 +60,13 @@ for(let i = 0; i<callButtons.length; i++){
 
     })
 }
+
+// Clear history functionality 
+document.getElementById("clear-history-btn").addEventListener('click',function(){
+    document.getElementById("call-history-container").innerHTML = '';
+})
+
+// Copy button functionality 
 const copyButtons = document.getElementsByClassName("copy-btton");
 
 let totalCopy = parseInt(document.getElementById("copy-count").innerText);
