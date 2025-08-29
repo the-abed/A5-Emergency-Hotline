@@ -14,6 +14,36 @@ for(let heart of cardHearts) {
 }
 // event handler for call button && call button functionality
 
+let availableCoin = parseInt(document.getElementById("available-coin").innerText);
+// console.log(availableCoin);
+
+const callButtons = document.getElementsByClassName("call-button")
+
+const serviceNames = document.getElementsByClassName("service-name")
+
+const servicesNumbers = document.getElementsByClassName("service-number")
+
+const callHIstory = document.getElementById("call-history-card") 
+
+for(let i = 0; i<callButtons.length; i++){
+    callButtons[i].addEventListener('click',function(){
+        if(availableCoin<20){
+           return alert('Do not have sufficient coin. Need at least 20 coin to make a call');
+        }
+       
+        availableCoin -= 20;
+        document.getElementById('available-coin').innerText = availableCoin;
+        const serviceName = serviceNames[i].innerText;
+        const serviceNumber = servicesNumbers[i].innerText;
+        alert('📞 calling ' + serviceName +' '+ serviceNumber);
+    })
+}
+    
+
+
+
+
+
 
 
 
@@ -40,8 +70,7 @@ for(let heart of cardHearts) {
 
 
 // removed
-// let availableCoin = parseInt(document.getElementById("available-coin").innerText)
-// console.log(availableCoin);
+
 
 // document.getElementById("emergency-call-btn").addEventListener('click',function(){
 //     const serviceNumber = document.querySelectorAll(".number")
